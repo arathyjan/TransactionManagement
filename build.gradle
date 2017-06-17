@@ -28,4 +28,5 @@ dependencies {
     compile("com.h2database:h2")
     compileOnly("org.projectlombok:lombok")
     testCompile("junit:junit")
+    testCompile("org.mockito:mockito-all")
 }
