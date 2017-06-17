@@ -1,6 +1,7 @@
 package com.arathy.transactionmanagement.controller;
 
 import com.arathy.transactionmanagement.models.Transaction;
+import com.arathy.transactionmanagement.models.TransactionStatistics;
 import com.arathy.transactionmanagement.service.TransactionService;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class TransactionControllerTest {
     }
 
     @Test
-    public void saveTransaction() {
+    public void testSaveTransactionCallsService() {
         TransactionController transactionController = new TransactionController(transactionService);
         Transaction transaction = new Transaction();
         Transaction expectedTransaction = new Transaction();
@@ -32,6 +33,18 @@ public class TransactionControllerTest {
 
         assertEquals(expectedTransaction, saveTransaction);
         verify(transactionService).saveTransaction(transaction);
+    }
+
+    @Test
+    public void testIfGetTransactionStatisticsCallsService() {
+        TransactionController transactionController = new TransactionController(transactionService);
+        TransactionStatistics expectedTransactionStatistics = new TransactionStatistics();
+        when(transactionService.getTransactionStatisticsBeforeLast60Seconds()).thenReturn(expectedTransactionStatistics);
+
+        TransactionStatistics transactionStatistics = transactionController.getStatistics();
+
+        assertEquals(expectedTransactionStatistics, transactionStatistics);
+        verify(transactionService).getTransactionStatisticsBeforeLast60Seconds();
     }
 
 }
