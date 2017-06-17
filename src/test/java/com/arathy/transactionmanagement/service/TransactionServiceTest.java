@@ -35,9 +35,9 @@ public class TransactionServiceTest {
 
     @Test
     public void transactionRepositoryIsCalledForSave() {
-        Transaction expectedTransaction = new Transaction();
+        Transaction expectedTransaction = new Transaction(1, 12.0, 123456);
         when(mockTransactionRepository.save(any(Transaction.class))).thenReturn(expectedTransaction);
-        Transaction transaction = new Transaction();
+        Transaction transaction = new Transaction(1, 12.0, 123456);
         Transaction transactionResult = transactionServiceMock.saveTransaction(transaction);
 
         verify(mockTransactionRepository).save(transaction);
@@ -46,7 +46,7 @@ public class TransactionServiceTest {
 
     @Test
     public void transactionRepositoryIsCalledForGetTransactionStatisticsBeforeLast60Seconds() {
-        TransactionStatistics expectedTransactionStatistics = new TransactionStatistics();
+        TransactionStatistics expectedTransactionStatistics = new TransactionStatistics(1.0, 1.0, 1.0, 1.0, 1L);
 
         when(mockTransactionRepository.getTransactionStaticsAfter(anyLong())).thenReturn(expectedTransactionStatistics);
 

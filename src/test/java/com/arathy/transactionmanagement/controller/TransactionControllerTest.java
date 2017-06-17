@@ -58,7 +58,7 @@ public class TransactionControllerTest {
     @Test
     public void testIfGetTransactionStatisticsCallsService() {
         TransactionController transactionController = new TransactionController(transactionService);
-        TransactionStatistics expectedTransactionStatistics = new TransactionStatistics();
+        TransactionStatistics expectedTransactionStatistics = new TransactionStatistics(1.0, 1.0, 1.0, 1.0, 1L);
         when(transactionService.getTransactionStatisticsBeforeLast60Seconds()).thenReturn(expectedTransactionStatistics);
 
         TransactionStatistics transactionStatistics = transactionController.getStatistics();

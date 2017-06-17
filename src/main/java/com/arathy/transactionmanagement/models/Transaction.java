@@ -1,13 +1,11 @@
 package com.arathy.transactionmanagement.models;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Transaction {
@@ -20,4 +18,8 @@ public class Transaction {
 
     @Column
     long timestamp;
+
+    public long getTimestamp() {
+        return timestamp;
+    }
 }
