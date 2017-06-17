@@ -37,6 +37,6 @@ public class TransactionRepositoryTest {
         assertEquals(40.0, transactionStatistics.getMin(), 0);
         assertEquals(60.0, transactionStatistics.getMax(), 0);
         assertEquals(100.0, transactionStatistics.getSum(), 0);
-        assertEquals(2, transactionStatistics.getCount());
+        assertEquals(2, transactionStatistics.getCount(), 0);
     }
 }

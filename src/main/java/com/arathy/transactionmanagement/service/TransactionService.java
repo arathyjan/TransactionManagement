@@ -3,6 +3,7 @@ package com.arathy.transactionmanagement.service;
 import com.arathy.transactionmanagement.dao.TransactionRepository;
 import com.arathy.transactionmanagement.models.Transaction;
 import com.arathy.transactionmanagement.models.TransactionStatistics;
+import com.arathy.transactionmanagement.utils.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +25,6 @@ public class TransactionService {
     }
 
     public TransactionStatistics getTransactionStatisticsBeforeLast60Seconds() {
-        return transactionRepository.getTransactionStaticsAfter(getEpochMillisForUTCForLast60s());
-    }
-
-    private long getEpochMillisForUTCForLast60s() {
-        return ZonedDateTime
-                .now(UTC)
-                .minusSeconds(60)
-                .toInstant()
-                .toEpochMilli();
+        return transactionRepository.getTransactionStaticsAfter(DateTimeUtils.getEpochMillisForUTCForLast60s());
     }
 }
